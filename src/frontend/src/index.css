@@ -1,0 +1,271 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+    /* Warm cream background */
+    --background: 0.94 0.03 85;
+    --foreground: 0.27 0.05 42;
+    /* Ivory cards */
+    --card: 0.98 0.015 85;
+    --card-foreground: 0.27 0.05 42;
+    --popover: 0.98 0.015 85;
+    --popover-foreground: 0.27 0.05 42;
+    /* Caramel primary */
+    --primary: 0.63 0.13 60;
+    --primary-foreground: 0.97 0.02 85;
+    /* Muted cream */
+    --secondary: 0.92 0.03 85;
+    --secondary-foreground: 0.27 0.05 42;
+    --muted: 0.92 0.03 85;
+    --muted-foreground: 0.44 0.04 42;
+    /* Gold accent */
+    --accent: 0.72 0.1 66;
+    --accent-foreground: 0.27 0.05 42;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.87 0.04 75;
+    --input: 0.87 0.04 75;
+    --ring: 0.63 0.13 60;
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+    --sidebar: 0.92 0.03 85;
+    --sidebar-foreground: 0.27 0.05 42;
+    --sidebar-primary: 0.63 0.13 60;
+    --sidebar-primary-foreground: 0.97 0.02 85;
+    --sidebar-accent: 0.72 0.1 66;
+    --sidebar-accent-foreground: 0.27 0.05 42;
+    --sidebar-border: 0.87 0.04 75;
+    --sidebar-ring: 0.63 0.13 60;
+
+    /* Custom bakery tokens */
+    --cream-light: oklch(0.97 0.02 85);
+    --cocoa: oklch(0.27 0.05 42);
+    --cocoa-mid: oklch(0.44 0.04 42);
+    --gold: oklch(0.72 0.1 66);
+    --caramel: oklch(0.63 0.13 60);
+    --caramel-light: oklch(0.7 0.11 60);
+    --ivory: oklch(0.98 0.015 85);
+  }
+
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "DM Sans", sans-serif;
+  }
+}
+
+/* ===================== ANIMATIONS ===================== */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-12px) rotate(5deg);
+  }
+  66% {
+    transform: translateY(-6px) rotate(-3deg);
+  }
+}
+
+@keyframes floatReverse {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(10px) rotate(-5deg);
+  }
+  66% {
+    transform: translateY(5px) rotate(3deg);
+  }
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.4) rotate(20deg);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.float-slow {
+  animation: float 6s ease-in-out infinite;
+}
+.float-medium {
+  animation: float 4s ease-in-out infinite 1s;
+}
+.float-fast {
+  animation: floatReverse 5s ease-in-out infinite 0.5s;
+}
+.sparkle-anim {
+  animation: sparkle 3s ease-in-out infinite;
+}
+.sparkle-anim-delay {
+  animation: sparkle 3s ease-in-out infinite 1.5s;
+}
+
+/* Scroll animations */
+.scroll-hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.scroll-hidden.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-hidden-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.scroll-hidden-left.animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-hidden-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.scroll-hidden-right.animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Hero word animation */
+.hero-word {
+  display: inline-block;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Nav transition */
+.nav-solid {
+  background-color: oklch(0.94 0.03 85 / 0.97) !important;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 20px oklch(0.27 0.05 42 / 0.08);
+}
+
+/* Button hover */
+.btn-primary {
+  background-color: var(--caramel);
+  color: var(--cream-light);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s
+    ease;
+}
+.btn-primary:hover {
+  background-color: var(--caramel-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px oklch(0.63 0.13 60 / 0.35);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Card hover */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px oklch(0.27 0.05 42 / 0.12);
+}
+
+/* Gold shimmer text */
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(0.63 0.13 60),
+    oklch(0.72 0.1 66),
+    oklch(0.78 0.12 70),
+    oklch(0.72 0.1 66),
+    oklch(0.63 0.13 60)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float-slow,
+  .float-medium,
+  .float-fast,
+  .sparkle-anim,
+  .sparkle-anim-delay {
+    animation: none;
+  }
+  .hero-word {
+    opacity: 1;
+    animation: none;
+  }
+  .scroll-hidden,
+  .scroll-hidden-left,
+  .scroll-hidden-right {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
